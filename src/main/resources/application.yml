@@ -1,0 +1,13 @@
+server:
+  port: 8082
+  connectionTimeout: 1S
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 0
+    max-connections: 0
+spring:
+  application:
+    name: localspringbootdemo
+  profiles:
+    active: test
+

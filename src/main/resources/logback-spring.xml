@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+    <jmxConfigurator />
+    <property name="log.base" value="/Users/jiangqb/Documents/workrelated/logs"/>
+    <springProperty scope="context" name="log.base" source="logback.logdir"/>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            </layout>
+        </encoder>
+    </appender>
+    <appender name="businessLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender" >
+        <file>${log.base}/bankZSlog.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.base}/bankZSlog-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <MaxHistory>10</MaxHistory>
+            <MaxFileSize>100MB</MaxFileSize>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}  %msg%n</pattern>
+            </layout>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="console"/>
+        <!--<appender-ref ref="businessLogFile"/>-->
+    </root>
+</configuration>

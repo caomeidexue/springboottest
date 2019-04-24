@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiang.localspringbootdemo.mapper.OtimisticLockAccountMapper">
+  <resultMap id="BaseResultMap" type="com.jiang.localspringbootdemo.entity.OtimisticLockAccount">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uniqueId" jdbcType="VARCHAR" property="uniqueid" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="version_amount" jdbcType="INTEGER" property="versionAmount" />
+    <result column="last_modify_time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uniqueId, amount, version_amount, last_modify_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from otimistic_lock_account
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from otimistic_lock_account
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jiang.localspringbootdemo.entity.OtimisticLockAccount">
+    insert into otimistic_lock_account (id, uniqueId, amount, 
+      version_amount, last_modify_time, remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{uniqueid,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER}, 
+      #{versionAmount,jdbcType=INTEGER}, #{lastModifyTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jiang.localspringbootdemo.entity.OtimisticLockAccount">
+    insert into otimistic_lock_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uniqueid != null">
+        uniqueId,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="versionAmount != null">
+        version_amount,
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uniqueid != null">
+        #{uniqueid,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="versionAmount != null">
+        #{versionAmount,jdbcType=INTEGER},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jiang.localspringbootdemo.entity.OtimisticLockAccount">
+    update otimistic_lock_account
+    <set>
+      <if test="uniqueid != null">
+        uniqueId = #{uniqueid,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="versionAmount != null">
+        version_amount = #{versionAmount,jdbcType=INTEGER},
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jiang.localspringbootdemo.entity.OtimisticLockAccount">
+    update otimistic_lock_account
+    set uniqueId = #{uniqueid,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER},
+      version_amount = #{versionAmount,jdbcType=INTEGER},
+      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
