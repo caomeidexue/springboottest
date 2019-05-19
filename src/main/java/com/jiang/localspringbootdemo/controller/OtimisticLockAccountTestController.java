@@ -110,7 +110,7 @@ public class OtimisticLockAccountTestController {
 
 
     @ResponseBody
-    @RequestMapping("/testRateLimiter")
+    @RequestMapping("/testRateLimitera")
     public int testRateLimiter(){
         /**
          * jiang1,在60秒内最多操作5次

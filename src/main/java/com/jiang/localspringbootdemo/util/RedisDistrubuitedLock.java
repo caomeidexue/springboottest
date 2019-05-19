@@ -44,6 +44,10 @@ public class RedisDistrubuitedLock {
             RedisCallback<String> callback = (connection) -> {
                 JedisCommands commands = (JedisCommands) connection.getNativeConnection();
                 String uuid = UUID.randomUUID().toString();
+
+                //NX 只在键不存在时，才对键进行设置操作。 SET key value NX 效果等同于 SETNX key value 。
+                //EX second ：设置键的过期时间为 second 秒。 SET key value EX second 效果等同于 SETEX key second value 。
+                //PX millisecond ：设置键的过期时间为 millisecond 毫秒。 SET key value PX millisecond 效果等同于 PSETEX key
                 return commands.set(key, uuid, "NX", "PX", expire);
             };
             String result = redisTemplate.execute(callback);
