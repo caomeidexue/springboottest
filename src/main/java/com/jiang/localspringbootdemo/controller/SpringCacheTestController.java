@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 @RequestMapping
 public class SpringCacheTestController {
@@ -32,5 +34,14 @@ public class SpringCacheTestController {
         srpingCacheService.delCache(1);
         return "success";
     }
+
+    @RequestMapping("/testAllCache")
+    @ResponseBody
+    public Object getPoolDataList(){
+
+        List<OtimisticLockAccount> otimisticLockAccount = srpingCacheService.getPoolDataList();
+        return otimisticLockAccount;
+    }
+
 
 }

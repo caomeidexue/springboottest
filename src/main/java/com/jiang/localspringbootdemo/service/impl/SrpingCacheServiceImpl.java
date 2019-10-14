@@ -5,10 +5,12 @@ import com.jiang.localspringbootdemo.mapper.OtimisticLockAccountMapper;
 import com.jiang.localspringbootdemo.service.SrpingCacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class SrpingCacheServiceImpl implements SrpingCacheService {
@@ -35,5 +37,13 @@ public class SrpingCacheServiceImpl implements SrpingCacheService {
         aa.setLastModifyTime(new Date());
         aa.setRemark("测试更新");
         otimisticLockAccountMapper.updateByPrimaryKeySelective(aa);
+    }
+
+
+    @Override
+    @Cacheable(value = {"123","abc"}, key = "caches[1].name", unless = "#result == null")
+    public List<OtimisticLockAccount> getPoolDataList() {
+       List<OtimisticLockAccount> list =  otimisticLockAccountMapper.getList();
+        return list;
     }
 }

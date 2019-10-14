@@ -3,6 +3,8 @@ package com.jiang.localspringbootdemo.mapper;
 import com.jiang.localspringbootdemo.entity.OtimisticLockAccount;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 @Repository
 public interface OtimisticLockAccountMapper {
@@ -17,4 +19,6 @@ public interface OtimisticLockAccountMapper {
     int updateByPrimaryKeySelective(OtimisticLockAccount record);
 
     int updateByPrimaryKey(OtimisticLockAccount record);
+
+    List<OtimisticLockAccount> getList();
 }
