@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public abstract class AtValueTempleateServiceAbstract implements AtValueTempleateService {
 
-    @Value("abstract.valuetest")
+    //@Value("abstract.valuetest")
     private String testValue;
 
 

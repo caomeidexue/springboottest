@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiang.localspringbootdemo.mapper.DeliveryBoxMapper">
+  <resultMap id="BaseResultMap" type="com.jiang.localspringbootdemo.entity.DeliveryBox">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="deliver_box_no" jdbcType="VARCHAR" property="deliverBoxNo" />
+    <result column="container_no" jdbcType="VARCHAR" property="containerNo" />
+    <result column="bussiness_type" jdbcType="TINYINT" property="bussinessType" />
+    <result column="box_type" jdbcType="TINYINT" property="boxType" />
+    <result column="parent_container_no" jdbcType="VARCHAR" property="parentContainerNo" />
+    <result column="reciver_name" jdbcType="VARCHAR" property="reciverName" />
+    <result column="group_str" jdbcType="VARCHAR" property="groupStr" />
+    <result column="box_status" jdbcType="TINYINT" property="boxStatus" />
+    <result column="delivery_box_status" jdbcType="TINYINT" property="deliveryBoxStatus" />
+    <result column="waybill_id" jdbcType="INTEGER" property="waybillId" />
+    <result column="waybill_no" jdbcType="VARCHAR" property="waybillNo" />
+    <result column="bind_time" jdbcType="TIMESTAMP" property="bindTime" />
+    <result column="bind_operator" jdbcType="VARCHAR" property="bindOperator" />
+    <result column="box_full_qty" jdbcType="INTEGER" property="boxFullQty" />
+    <result column="big_warehouse_no" jdbcType="VARCHAR" property="bigWarehouseNo" />
+    <result column="shipper_code" jdbcType="VARCHAR" property="shipperCode" />
+    <result column="create_user_login_name" jdbcType="VARCHAR" property="createUserLoginName" />
+    <result column="update_user_login_name" jdbcType="VARCHAR" property="updateUserLoginName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, deliver_box_no, container_no, bussiness_type, box_type, parent_container_no, 
+    reciver_name, group_str, box_status, delivery_box_status, waybill_id, waybill_no, 
+    bind_time, bind_operator, box_full_qty, big_warehouse_no, shipper_code, create_user_login_name, 
+    update_user_login_name, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wms_delivery_box
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from wms_delivery_box
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jiang.localspringbootdemo.entity.DeliveryBox">
+    insert into wms_delivery_box (id, deliver_box_no, container_no, 
+      bussiness_type, box_type, parent_container_no, 
+      reciver_name, group_str, box_status, 
+      delivery_box_status, waybill_id, waybill_no, 
+      bind_time, bind_operator, box_full_qty, 
+      big_warehouse_no, shipper_code, create_user_login_name, 
+      update_user_login_name, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{deliverBoxNo,jdbcType=VARCHAR}, #{containerNo,jdbcType=VARCHAR}, 
+      #{bussinessType,jdbcType=TINYINT}, #{boxType,jdbcType=TINYINT}, #{parentContainerNo,jdbcType=VARCHAR}, 
+      #{reciverName,jdbcType=VARCHAR}, #{groupStr,jdbcType=VARCHAR}, #{boxStatus,jdbcType=TINYINT}, 
+      #{deliveryBoxStatus,jdbcType=TINYINT}, #{waybillId,jdbcType=INTEGER}, #{waybillNo,jdbcType=VARCHAR}, 
+      #{bindTime,jdbcType=TIMESTAMP}, #{bindOperator,jdbcType=VARCHAR}, #{boxFullQty,jdbcType=INTEGER}, 
+      #{bigWarehouseNo,jdbcType=VARCHAR}, #{shipperCode,jdbcType=VARCHAR}, #{createUserLoginName,jdbcType=VARCHAR}, 
+      #{updateUserLoginName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jiang.localspringbootdemo.entity.DeliveryBox">
+    insert into wms_delivery_box
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="deliverBoxNo != null">
+        deliver_box_no,
+      </if>
+      <if test="containerNo != null">
+        container_no,
+      </if>
+      <if test="bussinessType != null">
+        bussiness_type,
+      </if>
+      <if test="boxType != null">
+        box_type,
+      </if>
+      <if test="parentContainerNo != null">
+        parent_container_no,
+      </if>
+      <if test="reciverName != null">
+        reciver_name,
+      </if>
+      <if test="groupStr != null">
+        group_str,
+      </if>
+      <if test="boxStatus != null">
+        box_status,
+      </if>
+      <if test="deliveryBoxStatus != null">
+        delivery_box_status,
+      </if>
+      <if test="waybillId != null">
+        waybill_id,
+      </if>
+      <if test="waybillNo != null">
+        waybill_no,
+      </if>
+      <if test="bindTime != null">
+        bind_time,
+      </if>
+      <if test="bindOperator != null">
+        bind_operator,
+      </if>
+      <if test="boxFullQty != null">
+        box_full_qty,
+      </if>
+      <if test="bigWarehouseNo != null">
+        big_warehouse_no,
+      </if>
+      <if test="shipperCode != null">
+        shipper_code,
+      </if>
+      <if test="createUserLoginName != null">
+        create_user_login_name,
+      </if>
+      <if test="updateUserLoginName != null">
+        update_user_login_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="deliverBoxNo != null">
+        #{deliverBoxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="containerNo != null">
+        #{containerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bussinessType != null">
+        #{bussinessType,jdbcType=TINYINT},
+      </if>
+      <if test="boxType != null">
+        #{boxType,jdbcType=TINYINT},
+      </if>
+      <if test="parentContainerNo != null">
+        #{parentContainerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverName != null">
+        #{reciverName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupStr != null">
+        #{groupStr,jdbcType=VARCHAR},
+      </if>
+      <if test="boxStatus != null">
+        #{boxStatus,jdbcType=TINYINT},
+      </if>
+      <if test="deliveryBoxStatus != null">
+        #{deliveryBoxStatus,jdbcType=TINYINT},
+      </if>
+      <if test="waybillId != null">
+        #{waybillId,jdbcType=INTEGER},
+      </if>
+      <if test="waybillNo != null">
+        #{waybillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bindTime != null">
+        #{bindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bindOperator != null">
+        #{bindOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="boxFullQty != null">
+        #{boxFullQty,jdbcType=INTEGER},
+      </if>
+      <if test="bigWarehouseNo != null">
+        #{bigWarehouseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCode != null">
+        #{shipperCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserLoginName != null">
+        #{createUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserLoginName != null">
+        #{updateUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jiang.localspringbootdemo.entity.DeliveryBox">
+    update wms_delivery_box
+    <set>
+      <if test="deliverBoxNo != null">
+        deliver_box_no = #{deliverBoxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="containerNo != null">
+        container_no = #{containerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bussinessType != null">
+        bussiness_type = #{bussinessType,jdbcType=TINYINT},
+      </if>
+      <if test="boxType != null">
+        box_type = #{boxType,jdbcType=TINYINT},
+      </if>
+      <if test="parentContainerNo != null">
+        parent_container_no = #{parentContainerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverName != null">
+        reciver_name = #{reciverName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupStr != null">
+        group_str = #{groupStr,jdbcType=VARCHAR},
+      </if>
+      <if test="boxStatus != null">
+        box_status = #{boxStatus,jdbcType=TINYINT},
+      </if>
+      <if test="deliveryBoxStatus != null">
+        delivery_box_status = #{deliveryBoxStatus,jdbcType=TINYINT},
+      </if>
+      <if test="waybillId != null">
+        waybill_id = #{waybillId,jdbcType=INTEGER},
+      </if>
+      <if test="waybillNo != null">
+        waybill_no = #{waybillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bindTime != null">
+        bind_time = #{bindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bindOperator != null">
+        bind_operator = #{bindOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="boxFullQty != null">
+        box_full_qty = #{boxFullQty,jdbcType=INTEGER},
+      </if>
+      <if test="bigWarehouseNo != null">
+        big_warehouse_no = #{bigWarehouseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCode != null">
+        shipper_code = #{shipperCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserLoginName != null">
+        create_user_login_name = #{createUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserLoginName != null">
+        update_user_login_name = #{updateUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jiang.localspringbootdemo.entity.DeliveryBox">
+    update wms_delivery_box
+    set deliver_box_no = #{deliverBoxNo,jdbcType=VARCHAR},
+      container_no = #{containerNo,jdbcType=VARCHAR},
+      bussiness_type = #{bussinessType,jdbcType=TINYINT},
+      box_type = #{boxType,jdbcType=TINYINT},
+      parent_container_no = #{parentContainerNo,jdbcType=VARCHAR},
+      reciver_name = #{reciverName,jdbcType=VARCHAR},
+      group_str = #{groupStr,jdbcType=VARCHAR},
+      box_status = #{boxStatus,jdbcType=TINYINT},
+      delivery_box_status = #{deliveryBoxStatus,jdbcType=TINYINT},
+      waybill_id = #{waybillId,jdbcType=INTEGER},
+      waybill_no = #{waybillNo,jdbcType=VARCHAR},
+      bind_time = #{bindTime,jdbcType=TIMESTAMP},
+      bind_operator = #{bindOperator,jdbcType=VARCHAR},
+      box_full_qty = #{boxFullQty,jdbcType=INTEGER},
+      big_warehouse_no = #{bigWarehouseNo,jdbcType=VARCHAR},
+      shipper_code = #{shipperCode,jdbcType=VARCHAR},
+      create_user_login_name = #{createUserLoginName,jdbcType=VARCHAR},
+      update_user_login_name = #{updateUserLoginName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <insert id="batchSaveDeliverBoxEncap" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id" >
+    insert into wms_delivery_box
+    (
+    deliver_box_no,
+    container_no,
+    bussiness_type,
+    box_type,
+    parent_container_no,
+    reciver_name,
+    group_str,
+    box_status,
+    delivery_box_status,
+    waybill_id,
+    waybill_no,
+    bind_time,
+    bind_operator,
+    box_full_qty,
+    big_warehouse_no,
+    shipper_code,
+    create_user_login_name,
+    update_user_login_name,
+    create_time,
+    update_time
+    )
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+      #{item.deliverBoxNo,jdbcType=VARCHAR},
+      #{item.containerNo,jdbcType=VARCHAR},
+      #{item.bussinessType,jdbcType=TINYINT},
+      #{item.boxType,jdbcType=TINYINT},
+      #{item.parentContainerNo,jdbcType=VARCHAR},
+      #{item.reciverName,jdbcType=VARCHAR},
+      #{item.groupStr,jdbcType=VARCHAR},
+      #{item.boxStatus,jdbcType=TINYINT},
+      #{item.deliveryBoxStatus,jdbcType=TINYINT},
+      #{item.waybillId,jdbcType=INTEGER},
+      #{item.waybillNo,jdbcType=VARCHAR},
+      #{item.bindTime,jdbcType=TIMESTAMP},
+      #{item.bindOperator,jdbcType=VARCHAR},
+      #{item.boxFullQty,jdbcType=INTEGER},
+      #{item.bigWarehouseNo,jdbcType=VARCHAR},
+      #{item.shipperCode,jdbcType=VARCHAR},
+      #{item.createUserLoginName,jdbcType=VARCHAR},
+      #{item.updateUserLoginName,jdbcType=VARCHAR},
+      #{item.createTime,jdbcType=TIMESTAMP},
+      #{item.updateTime,jdbcType=TIMESTAMP}
+      )
+    </foreach>
+  </insert>
+</mapper>

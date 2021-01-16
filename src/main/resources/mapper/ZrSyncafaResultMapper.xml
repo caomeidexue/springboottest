@@ -150,4 +150,59 @@
       is_close = #{isClose,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAll"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from zr_syncafa_result
+  </select>
+
+
+  <update id="batchUpdate" >
+
+    <foreach collection="list" open="" close="" item="item" index="index"  >
+      update zr_syncafa_result
+    <set>
+      status = #{item.status},
+      err_msg = #{item.errMsg,jdbcType=VARCHAR},
+      last_modify_time = #{item.lastModifyTime,jdbcType=TIMESTAMP},
+    </set>
+    where id = #{item.id};
+    </foreach>
+  </update>
+
+
+
+  <update id="batchInsertOnUpdate" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id" >
+    insert into zr_syncafa_result
+    (
+      unique_business_id,
+      status,
+      err_msg,
+      customer_trx_id,
+      trx_number,
+      create_time,
+      is_del,
+      last_modify_time,
+      is_close
+    )
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+        #{item.uniqueBusinessId,jdbcType=VARCHAR},
+        #{item.status,jdbcType=VARCHAR},
+        #{item.errMsg,jdbcType=VARCHAR},
+        #{item.customerTrxId,jdbcType=VARCHAR},
+        #{item.trxNumber,jdbcType=VARCHAR},
+        #{item.createTime,jdbcType=TIMESTAMP},
+        #{item.isDel,jdbcType=INTEGER},
+        #{item.lastModifyTime,jdbcType=TIMESTAMP},
+        #{item.isClose,jdbcType=INTEGER}
+      )
+    </foreach>
+    on duplicate key update unique_business_id=values(unique_business_id),
+    status=values(status),
+    is_close=values(is_close)
+  </update>
+
 </mapper>

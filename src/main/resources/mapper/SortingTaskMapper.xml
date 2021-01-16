@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiang.localspringbootdemo.mapper.SortingTaskMapper">
+  <resultMap id="BaseResultMap" type="com.jiang.localspringbootdemo.entity.SortingTask">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sorting_no" jdbcType="VARCHAR" property="sortingNo" />
+    <result column="sorting_qty" jdbcType="INTEGER" property="sortingQty" />
+    <result column="real_sorting_qty" jdbcType="INTEGER" property="realSortingQty" />
+    <result column="receiver_name" jdbcType="VARCHAR" property="receiverName" />
+    <result column="sorting_location_no" jdbcType="VARCHAR" property="sortingLocationNo" />
+    <result column="group_str" jdbcType="VARCHAR" property="groupStr" />
+    <result column="operator_name" jdbcType="VARCHAR" property="operatorName" />
+    <result column="operate_time" jdbcType="TIMESTAMP" property="operateTime" />
+    <result column="sku_code" jdbcType="VARCHAR" property="skuCode" />
+    <result column="scatter_mark" jdbcType="TINYINT" property="scatterMark" />
+    <result column="wave_id" jdbcType="INTEGER" property="waveId" />
+    <result column="wave_detail_id" jdbcType="INTEGER" property="waveDetailId" />
+    <result column="sorting_box_num" jdbcType="INTEGER" property="sortingBoxNum" />
+    <result column="real_box_num" jdbcType="INTEGER" property="realBoxNum" />
+    <result column="box_qty" jdbcType="INTEGER" property="boxQty" />
+    <result column="sorting_task_status" jdbcType="TINYINT" property="sortingTaskStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="big_warehouse_no" jdbcType="VARCHAR" property="bigWarehouseNo" />
+    <result column="shipper_code" jdbcType="VARCHAR" property="shipperCode" />
+    <result column="create_user_login_name" jdbcType="VARCHAR" property="createUserLoginName" />
+    <result column="update_user_login_name" jdbcType="VARCHAR" property="updateUserLoginName" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sorting_no, sorting_qty, real_sorting_qty, receiver_name, sorting_location_no, 
+    group_str, operator_name, operate_time, sku_code, scatter_mark, wave_id, wave_detail_id, 
+    sorting_box_num, real_box_num, box_qty, sorting_task_status, create_time, big_warehouse_no, 
+    shipper_code, create_user_login_name, update_user_login_name, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wms_sorting_task
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from wms_sorting_task
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jiang.localspringbootdemo.entity.SortingTask">
+    insert into wms_sorting_task (id, sorting_no, sorting_qty, 
+      real_sorting_qty, receiver_name, sorting_location_no, 
+      group_str, operator_name, operate_time, 
+      sku_code, scatter_mark, wave_id, 
+      wave_detail_id, sorting_box_num, real_box_num, 
+      box_qty, sorting_task_status, create_time, 
+      big_warehouse_no, shipper_code, create_user_login_name, 
+      update_user_login_name, update_time)
+    values (#{id,jdbcType=INTEGER}, #{sortingNo,jdbcType=VARCHAR}, #{sortingQty,jdbcType=INTEGER}, 
+      #{realSortingQty,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR}, #{sortingLocationNo,jdbcType=VARCHAR}, 
+      #{groupStr,jdbcType=VARCHAR}, #{operatorName,jdbcType=VARCHAR}, #{operateTime,jdbcType=TIMESTAMP}, 
+      #{skuCode,jdbcType=VARCHAR}, #{scatterMark,jdbcType=TINYINT}, #{waveId,jdbcType=INTEGER}, 
+      #{waveDetailId,jdbcType=INTEGER}, #{sortingBoxNum,jdbcType=INTEGER}, #{realBoxNum,jdbcType=INTEGER}, 
+      #{boxQty,jdbcType=INTEGER}, #{sortingTaskStatus,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{bigWarehouseNo,jdbcType=VARCHAR}, #{shipperCode,jdbcType=VARCHAR}, #{createUserLoginName,jdbcType=VARCHAR}, 
+      #{updateUserLoginName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jiang.localspringbootdemo.entity.SortingTask">
+    insert into wms_sorting_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sortingNo != null">
+        sorting_no,
+      </if>
+      <if test="sortingQty != null">
+        sorting_qty,
+      </if>
+      <if test="realSortingQty != null">
+        real_sorting_qty,
+      </if>
+      <if test="receiverName != null">
+        receiver_name,
+      </if>
+      <if test="sortingLocationNo != null">
+        sorting_location_no,
+      </if>
+      <if test="groupStr != null">
+        group_str,
+      </if>
+      <if test="operatorName != null">
+        operator_name,
+      </if>
+      <if test="operateTime != null">
+        operate_time,
+      </if>
+      <if test="skuCode != null">
+        sku_code,
+      </if>
+      <if test="scatterMark != null">
+        scatter_mark,
+      </if>
+      <if test="waveId != null">
+        wave_id,
+      </if>
+      <if test="waveDetailId != null">
+        wave_detail_id,
+      </if>
+      <if test="sortingBoxNum != null">
+        sorting_box_num,
+      </if>
+      <if test="realBoxNum != null">
+        real_box_num,
+      </if>
+      <if test="boxQty != null">
+        box_qty,
+      </if>
+      <if test="sortingTaskStatus != null">
+        sorting_task_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="bigWarehouseNo != null">
+        big_warehouse_no,
+      </if>
+      <if test="shipperCode != null">
+        shipper_code,
+      </if>
+      <if test="createUserLoginName != null">
+        create_user_login_name,
+      </if>
+      <if test="updateUserLoginName != null">
+        update_user_login_name,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sortingNo != null">
+        #{sortingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sortingQty != null">
+        #{sortingQty,jdbcType=INTEGER},
+      </if>
+      <if test="realSortingQty != null">
+        #{realSortingQty,jdbcType=INTEGER},
+      </if>
+      <if test="receiverName != null">
+        #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortingLocationNo != null">
+        #{sortingLocationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="groupStr != null">
+        #{groupStr,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null">
+        #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null">
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="skuCode != null">
+        #{skuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="scatterMark != null">
+        #{scatterMark,jdbcType=TINYINT},
+      </if>
+      <if test="waveId != null">
+        #{waveId,jdbcType=INTEGER},
+      </if>
+      <if test="waveDetailId != null">
+        #{waveDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="sortingBoxNum != null">
+        #{sortingBoxNum,jdbcType=INTEGER},
+      </if>
+      <if test="realBoxNum != null">
+        #{realBoxNum,jdbcType=INTEGER},
+      </if>
+      <if test="boxQty != null">
+        #{boxQty,jdbcType=INTEGER},
+      </if>
+      <if test="sortingTaskStatus != null">
+        #{sortingTaskStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bigWarehouseNo != null">
+        #{bigWarehouseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCode != null">
+        #{shipperCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserLoginName != null">
+        #{createUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserLoginName != null">
+        #{updateUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jiang.localspringbootdemo.entity.SortingTask">
+    update wms_sorting_task
+    <set>
+      <if test="sortingNo != null">
+        sorting_no = #{sortingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sortingQty != null">
+        sorting_qty = #{sortingQty,jdbcType=INTEGER},
+      </if>
+      <if test="realSortingQty != null">
+        real_sorting_qty = #{realSortingQty,jdbcType=INTEGER},
+      </if>
+      <if test="receiverName != null">
+        receiver_name = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortingLocationNo != null">
+        sorting_location_no = #{sortingLocationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="groupStr != null">
+        group_str = #{groupStr,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorName != null">
+        operator_name = #{operatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null">
+        operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="skuCode != null">
+        sku_code = #{skuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="scatterMark != null">
+        scatter_mark = #{scatterMark,jdbcType=TINYINT},
+      </if>
+      <if test="waveId != null">
+        wave_id = #{waveId,jdbcType=INTEGER},
+      </if>
+      <if test="waveDetailId != null">
+        wave_detail_id = #{waveDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="sortingBoxNum != null">
+        sorting_box_num = #{sortingBoxNum,jdbcType=INTEGER},
+      </if>
+      <if test="realBoxNum != null">
+        real_box_num = #{realBoxNum,jdbcType=INTEGER},
+      </if>
+      <if test="boxQty != null">
+        box_qty = #{boxQty,jdbcType=INTEGER},
+      </if>
+      <if test="sortingTaskStatus != null">
+        sorting_task_status = #{sortingTaskStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bigWarehouseNo != null">
+        big_warehouse_no = #{bigWarehouseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCode != null">
+        shipper_code = #{shipperCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserLoginName != null">
+        create_user_login_name = #{createUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserLoginName != null">
+        update_user_login_name = #{updateUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jiang.localspringbootdemo.entity.SortingTask">
+    update wms_sorting_task
+    set sorting_no = #{sortingNo,jdbcType=VARCHAR},
+      sorting_qty = #{sortingQty,jdbcType=INTEGER},
+      real_sorting_qty = #{realSortingQty,jdbcType=INTEGER},
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      sorting_location_no = #{sortingLocationNo,jdbcType=VARCHAR},
+      group_str = #{groupStr,jdbcType=VARCHAR},
+      operator_name = #{operatorName,jdbcType=VARCHAR},
+      operate_time = #{operateTime,jdbcType=TIMESTAMP},
+      sku_code = #{skuCode,jdbcType=VARCHAR},
+      scatter_mark = #{scatterMark,jdbcType=TINYINT},
+      wave_id = #{waveId,jdbcType=INTEGER},
+      wave_detail_id = #{waveDetailId,jdbcType=INTEGER},
+      sorting_box_num = #{sortingBoxNum,jdbcType=INTEGER},
+      real_box_num = #{realBoxNum,jdbcType=INTEGER},
+      box_qty = #{boxQty,jdbcType=INTEGER},
+      sorting_task_status = #{sortingTaskStatus,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      big_warehouse_no = #{bigWarehouseNo,jdbcType=VARCHAR},
+      shipper_code = #{shipperCode,jdbcType=VARCHAR},
+      create_user_login_name = #{createUserLoginName,jdbcType=VARCHAR},
+      update_user_login_name = #{updateUserLoginName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

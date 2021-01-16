@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiang.localspringbootdemo.mapper.LayoutDistrictDOMapper">
+  <resultMap id="BaseResultMap" type="com.jiang.localspringbootdemo.entity.LayoutDistrictDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="layout_id" jdbcType="INTEGER" property="layoutId" />
+    <result column="district_id" jdbcType="BIGINT" property="districtId" />
+    <result column="coordinate" jdbcType="VARCHAR" property="coordinate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="length" jdbcType="DECIMAL" property="length" />
+    <result column="width" jdbcType="DECIMAL" property="width" />
+    <result column="height" jdbcType="DECIMAL" property="height" />
+    <result column="alias" jdbcType="VARCHAR" property="alias" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jiang.localspringbootdemo.entity.LayoutDistrictDO">
+    <result column="data_str" jdbcType="LONGVARCHAR" property="dataStr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, layout_id, district_id, coordinate, create_time, remark, length, width, height, 
+    alias
+  </sql>
+  <sql id="Blob_Column_List">
+    data_str
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from layout_district
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from layout_district
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jiang.localspringbootdemo.entity.LayoutDistrictDO">
+    insert into layout_district (id, layout_id, district_id, 
+      coordinate, create_time, remark, 
+      length, width, height, 
+      alias, data_str)
+    values (#{id,jdbcType=BIGINT}, #{layoutId,jdbcType=INTEGER}, #{districtId,jdbcType=BIGINT}, 
+      #{coordinate,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{length,jdbcType=DECIMAL}, #{width,jdbcType=DECIMAL}, #{height,jdbcType=DECIMAL}, 
+      #{alias,jdbcType=VARCHAR}, #{dataStr,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jiang.localspringbootdemo.entity.LayoutDistrictDO">
+    insert into layout_district
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="layoutId != null">
+        layout_id,
+      </if>
+      <if test="districtId != null">
+        district_id,
+      </if>
+      <if test="coordinate != null">
+        coordinate,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="length != null">
+        length,
+      </if>
+      <if test="width != null">
+        width,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="alias != null">
+        alias,
+      </if>
+      <if test="dataStr != null">
+        data_str,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="layoutId != null">
+        #{layoutId,jdbcType=INTEGER},
+      </if>
+      <if test="districtId != null">
+        #{districtId,jdbcType=BIGINT},
+      </if>
+      <if test="coordinate != null">
+        #{coordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null">
+        #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=DECIMAL},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="alias != null">
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStr != null">
+        #{dataStr,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jiang.localspringbootdemo.entity.LayoutDistrictDO">
+    update layout_district
+    <set>
+      <if test="layoutId != null">
+        layout_id = #{layoutId,jdbcType=INTEGER},
+      </if>
+      <if test="districtId != null">
+        district_id = #{districtId,jdbcType=BIGINT},
+      </if>
+      <if test="coordinate != null">
+        coordinate = #{coordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null">
+        length = #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="width != null">
+        width = #{width,jdbcType=DECIMAL},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="alias != null">
+        alias = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStr != null">
+        data_str = #{dataStr,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jiang.localspringbootdemo.entity.LayoutDistrictDO">
+    update layout_district
+    set layout_id = #{layoutId,jdbcType=INTEGER},
+      district_id = #{districtId,jdbcType=BIGINT},
+      coordinate = #{coordinate,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      length = #{length,jdbcType=DECIMAL},
+      width = #{width,jdbcType=DECIMAL},
+      height = #{height,jdbcType=DECIMAL},
+      alias = #{alias,jdbcType=VARCHAR},
+      data_str = #{dataStr,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jiang.localspringbootdemo.entity.LayoutDistrictDO">
+    update layout_district
+    set layout_id = #{layoutId,jdbcType=INTEGER},
+      district_id = #{districtId,jdbcType=BIGINT},
+      coordinate = #{coordinate,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      length = #{length,jdbcType=DECIMAL},
+      width = #{width,jdbcType=DECIMAL},
+      height = #{height,jdbcType=DECIMAL},
+      alias = #{alias,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

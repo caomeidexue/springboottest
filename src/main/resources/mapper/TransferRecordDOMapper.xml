@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiang.localspringbootdemo.mapper.TransferRecordDOMapper">
+  <resultMap id="BaseResultMap" type="com.jiang.localspringbootdemo.entity.TransferRecordDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="transfer_record_no" jdbcType="VARCHAR" property="transferRecordNo" />
+    <result column="transfer_status" jdbcType="TINYINT" property="transferStatus" />
+    <result column="create_type" jdbcType="TINYINT" property="createType" />
+    <result column="warehouse_id" jdbcType="BIGINT" property="warehouseId" />
+    <result column="distribution_times" jdbcType="INTEGER" property="distributionTimes" />
+    <result column="warehouse_out_time" jdbcType="TIMESTAMP" property="warehouseOutTime" />
+    <result column="warehouse_in_time" jdbcType="TIMESTAMP" property="warehouseInTime" />
+    <result column="sync_atp_out_status" jdbcType="TINYINT" property="syncAtpOutStatus" />
+    <result column="sync_atp_in_status" jdbcType="TINYINT" property="syncAtpInStatus" />
+    <result column="warehouse_out_status" jdbcType="TINYINT" property="warehouseOutStatus" />
+    <result column="warehouse_in_status" jdbcType="TINYINT" property="warehouseInStatus" />
+    <result column="sync_cancel_status" jdbcType="TINYINT" property="syncCancelStatus" />
+    <result column="warehouse_out_user_id" jdbcType="BIGINT" property="warehouseOutUserId" />
+    <result column="inbound_user_id" jdbcType="BIGINT" property="inboundUserId" />
+    <result column="inbound_user" jdbcType="VARCHAR" property="inboundUser" />
+    <result column="reject_user_id" jdbcType="BIGINT" property="rejectUserId" />
+    <result column="reject_user" jdbcType="VARCHAR" property="rejectUser" />
+    <result column="reject_time" jdbcType="TIMESTAMP" property="rejectTime" />
+    <result column="cancel_user_id" jdbcType="BIGINT" property="cancelUserId" />
+    <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
+    <result column="cancel_verify_user_id" jdbcType="BIGINT" property="cancelVerifyUserId" />
+    <result column="cancel_verify_time" jdbcType="TIMESTAMP" property="cancelVerifyTime" />
+    <result column="cancel_verify_comment" jdbcType="VARCHAR" property="cancelVerifyComment" />
+    <result column="sharding_id" jdbcType="BIGINT" property="shardingId" />
+    <result column="create_source" jdbcType="TINYINT" property="createSource" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user_id" jdbcType="BIGINT" property="updateUserId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, transfer_record_no, transfer_status, create_type, warehouse_id, distribution_times, 
+    warehouse_out_time, warehouse_in_time, sync_atp_out_status, sync_atp_in_status, warehouse_out_status, 
+    warehouse_in_status, sync_cancel_status, warehouse_out_user_id, inbound_user_id, 
+    inbound_user, reject_user_id, reject_user, reject_time, cancel_user_id, cancel_time, 
+    cancel_verify_user_id, cancel_verify_time, cancel_verify_comment, sharding_id, create_source, 
+    create_user_id, create_time, update_user_id, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sms_transfer_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sms_transfer_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jiang.localspringbootdemo.entity.TransferRecordDO">
+    insert into sms_transfer_record (id, transfer_record_no, transfer_status, 
+      create_type, warehouse_id, distribution_times, 
+      warehouse_out_time, warehouse_in_time, 
+      sync_atp_out_status, sync_atp_in_status, warehouse_out_status, 
+      warehouse_in_status, sync_cancel_status, warehouse_out_user_id, 
+      inbound_user_id, inbound_user, reject_user_id, 
+      reject_user, reject_time, cancel_user_id, 
+      cancel_time, cancel_verify_user_id, cancel_verify_time, 
+      cancel_verify_comment, sharding_id, create_source, 
+      create_user_id, create_time, update_user_id, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{transferRecordNo,jdbcType=VARCHAR}, #{transferStatus,jdbcType=TINYINT}, 
+      #{createType,jdbcType=TINYINT}, #{warehouseId,jdbcType=BIGINT}, #{distributionTimes,jdbcType=INTEGER}, 
+      #{warehouseOutTime,jdbcType=TIMESTAMP}, #{warehouseInTime,jdbcType=TIMESTAMP}, 
+      #{syncAtpOutStatus,jdbcType=TINYINT}, #{syncAtpInStatus,jdbcType=TINYINT}, #{warehouseOutStatus,jdbcType=TINYINT}, 
+      #{warehouseInStatus,jdbcType=TINYINT}, #{syncCancelStatus,jdbcType=TINYINT}, #{warehouseOutUserId,jdbcType=BIGINT}, 
+      #{inboundUserId,jdbcType=BIGINT}, #{inboundUser,jdbcType=VARCHAR}, #{rejectUserId,jdbcType=BIGINT}, 
+      #{rejectUser,jdbcType=VARCHAR}, #{rejectTime,jdbcType=TIMESTAMP}, #{cancelUserId,jdbcType=BIGINT}, 
+      #{cancelTime,jdbcType=TIMESTAMP}, #{cancelVerifyUserId,jdbcType=BIGINT}, #{cancelVerifyTime,jdbcType=TIMESTAMP}, 
+      #{cancelVerifyComment,jdbcType=VARCHAR}, #{shardingId,jdbcType=BIGINT}, #{createSource,jdbcType=TINYINT}, 
+      #{createUserId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jiang.localspringbootdemo.entity.TransferRecordDO">
+    insert into sms_transfer_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="transferRecordNo != null">
+        transfer_record_no,
+      </if>
+      <if test="transferStatus != null">
+        transfer_status,
+      </if>
+      <if test="createType != null">
+        create_type,
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id,
+      </if>
+      <if test="distributionTimes != null">
+        distribution_times,
+      </if>
+      <if test="warehouseOutTime != null">
+        warehouse_out_time,
+      </if>
+      <if test="warehouseInTime != null">
+        warehouse_in_time,
+      </if>
+      <if test="syncAtpOutStatus != null">
+        sync_atp_out_status,
+      </if>
+      <if test="syncAtpInStatus != null">
+        sync_atp_in_status,
+      </if>
+      <if test="warehouseOutStatus != null">
+        warehouse_out_status,
+      </if>
+      <if test="warehouseInStatus != null">
+        warehouse_in_status,
+      </if>
+      <if test="syncCancelStatus != null">
+        sync_cancel_status,
+      </if>
+      <if test="warehouseOutUserId != null">
+        warehouse_out_user_id,
+      </if>
+      <if test="inboundUserId != null">
+        inbound_user_id,
+      </if>
+      <if test="inboundUser != null">
+        inbound_user,
+      </if>
+      <if test="rejectUserId != null">
+        reject_user_id,
+      </if>
+      <if test="rejectUser != null">
+        reject_user,
+      </if>
+      <if test="rejectTime != null">
+        reject_time,
+      </if>
+      <if test="cancelUserId != null">
+        cancel_user_id,
+      </if>
+      <if test="cancelTime != null">
+        cancel_time,
+      </if>
+      <if test="cancelVerifyUserId != null">
+        cancel_verify_user_id,
+      </if>
+      <if test="cancelVerifyTime != null">
+        cancel_verify_time,
+      </if>
+      <if test="cancelVerifyComment != null">
+        cancel_verify_comment,
+      </if>
+      <if test="shardingId != null">
+        sharding_id,
+      </if>
+      <if test="createSource != null">
+        create_source,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="transferRecordNo != null">
+        #{transferRecordNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transferStatus != null">
+        #{transferStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createType != null">
+        #{createType,jdbcType=TINYINT},
+      </if>
+      <if test="warehouseId != null">
+        #{warehouseId,jdbcType=BIGINT},
+      </if>
+      <if test="distributionTimes != null">
+        #{distributionTimes,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseOutTime != null">
+        #{warehouseOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="warehouseInTime != null">
+        #{warehouseInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncAtpOutStatus != null">
+        #{syncAtpOutStatus,jdbcType=TINYINT},
+      </if>
+      <if test="syncAtpInStatus != null">
+        #{syncAtpInStatus,jdbcType=TINYINT},
+      </if>
+      <if test="warehouseOutStatus != null">
+        #{warehouseOutStatus,jdbcType=TINYINT},
+      </if>
+      <if test="warehouseInStatus != null">
+        #{warehouseInStatus,jdbcType=TINYINT},
+      </if>
+      <if test="syncCancelStatus != null">
+        #{syncCancelStatus,jdbcType=TINYINT},
+      </if>
+      <if test="warehouseOutUserId != null">
+        #{warehouseOutUserId,jdbcType=BIGINT},
+      </if>
+      <if test="inboundUserId != null">
+        #{inboundUserId,jdbcType=BIGINT},
+      </if>
+      <if test="inboundUser != null">
+        #{inboundUser,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectUserId != null">
+        #{rejectUserId,jdbcType=BIGINT},
+      </if>
+      <if test="rejectUser != null">
+        #{rejectUser,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectTime != null">
+        #{rejectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelUserId != null">
+        #{cancelUserId,jdbcType=BIGINT},
+      </if>
+      <if test="cancelTime != null">
+        #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelVerifyUserId != null">
+        #{cancelVerifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="cancelVerifyTime != null">
+        #{cancelVerifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelVerifyComment != null">
+        #{cancelVerifyComment,jdbcType=VARCHAR},
+      </if>
+      <if test="shardingId != null">
+        #{shardingId,jdbcType=BIGINT},
+      </if>
+      <if test="createSource != null">
+        #{createSource,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jiang.localspringbootdemo.entity.TransferRecordDO">
+    update sms_transfer_record
+    <set>
+      <if test="transferRecordNo != null">
+        transfer_record_no = #{transferRecordNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transferStatus != null">
+        transfer_status = #{transferStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createType != null">
+        create_type = #{createType,jdbcType=TINYINT},
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id = #{warehouseId,jdbcType=BIGINT},
+      </if>
+      <if test="distributionTimes != null">
+        distribution_times = #{distributionTimes,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseOutTime != null">
+        warehouse_out_time = #{warehouseOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="warehouseInTime != null">
+        warehouse_in_time = #{warehouseInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncAtpOutStatus != null">
+        sync_atp_out_status = #{syncAtpOutStatus,jdbcType=TINYINT},
+      </if>
+      <if test="syncAtpInStatus != null">
+        sync_atp_in_status = #{syncAtpInStatus,jdbcType=TINYINT},
+      </if>
+      <if test="warehouseOutStatus != null">
+        warehouse_out_status = #{warehouseOutStatus,jdbcType=TINYINT},
+      </if>
+      <if test="warehouseInStatus != null">
+        warehouse_in_status = #{warehouseInStatus,jdbcType=TINYINT},
+      </if>
+      <if test="syncCancelStatus != null">
+        sync_cancel_status = #{syncCancelStatus,jdbcType=TINYINT},
+      </if>
+      <if test="warehouseOutUserId != null">
+        warehouse_out_user_id = #{warehouseOutUserId,jdbcType=BIGINT},
+      </if>
+      <if test="inboundUserId != null">
+        inbound_user_id = #{inboundUserId,jdbcType=BIGINT},
+      </if>
+      <if test="inboundUser != null">
+        inbound_user = #{inboundUser,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectUserId != null">
+        reject_user_id = #{rejectUserId,jdbcType=BIGINT},
+      </if>
+      <if test="rejectUser != null">
+        reject_user = #{rejectUser,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectTime != null">
+        reject_time = #{rejectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelUserId != null">
+        cancel_user_id = #{cancelUserId,jdbcType=BIGINT},
+      </if>
+      <if test="cancelTime != null">
+        cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelVerifyUserId != null">
+        cancel_verify_user_id = #{cancelVerifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="cancelVerifyTime != null">
+        cancel_verify_time = #{cancelVerifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelVerifyComment != null">
+        cancel_verify_comment = #{cancelVerifyComment,jdbcType=VARCHAR},
+      </if>
+      <if test="shardingId != null">
+        sharding_id = #{shardingId,jdbcType=BIGINT},
+      </if>
+      <if test="createSource != null">
+        create_source = #{createSource,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jiang.localspringbootdemo.entity.TransferRecordDO">
+    update sms_transfer_record
+    set transfer_record_no = #{transferRecordNo,jdbcType=VARCHAR},
+      transfer_status = #{transferStatus,jdbcType=TINYINT},
+      create_type = #{createType,jdbcType=TINYINT},
+      warehouse_id = #{warehouseId,jdbcType=BIGINT},
+      distribution_times = #{distributionTimes,jdbcType=INTEGER},
+      warehouse_out_time = #{warehouseOutTime,jdbcType=TIMESTAMP},
+      warehouse_in_time = #{warehouseInTime,jdbcType=TIMESTAMP},
+      sync_atp_out_status = #{syncAtpOutStatus,jdbcType=TINYINT},
+      sync_atp_in_status = #{syncAtpInStatus,jdbcType=TINYINT},
+      warehouse_out_status = #{warehouseOutStatus,jdbcType=TINYINT},
+      warehouse_in_status = #{warehouseInStatus,jdbcType=TINYINT},
+      sync_cancel_status = #{syncCancelStatus,jdbcType=TINYINT},
+      warehouse_out_user_id = #{warehouseOutUserId,jdbcType=BIGINT},
+      inbound_user_id = #{inboundUserId,jdbcType=BIGINT},
+      inbound_user = #{inboundUser,jdbcType=VARCHAR},
+      reject_user_id = #{rejectUserId,jdbcType=BIGINT},
+      reject_user = #{rejectUser,jdbcType=VARCHAR},
+      reject_time = #{rejectTime,jdbcType=TIMESTAMP},
+      cancel_user_id = #{cancelUserId,jdbcType=BIGINT},
+      cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+      cancel_verify_user_id = #{cancelVerifyUserId,jdbcType=BIGINT},
+      cancel_verify_time = #{cancelVerifyTime,jdbcType=TIMESTAMP},
+      cancel_verify_comment = #{cancelVerifyComment,jdbcType=VARCHAR},
+      sharding_id = #{shardingId,jdbcType=BIGINT},
+      create_source = #{createSource,jdbcType=TINYINT},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -104,4 +104,13 @@ public class OtimisticLockAccountServiceImpl implements OtimisticLockAccountServ
 
         return a;
     }
+
+
+    @Override
+    public void insert(OtimisticLockAccount otimisticLockAccount) {
+
+        otimisticLockAccountMapper.insertSelective(otimisticLockAccount);
+        //throw new RuntimeException("ccccc");
+
+    }
 }

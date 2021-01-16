@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiang.localspringbootdemo.mapper.DeliveryBoxDetailMapper">
+  <resultMap id="BaseResultMap" type="com.jiang.localspringbootdemo.entity.DeliveryBoxDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="delivery_box_id" jdbcType="INTEGER" property="deliveryBoxId" />
+    <result column="container_no" jdbcType="VARCHAR" property="containerNo" />
+    <result column="bussiness_type" jdbcType="TINYINT" property="bussinessType" />
+    <result column="sorting_task_id" jdbcType="INTEGER" property="sortingTaskId" />
+    <result column="sorting_task_no" jdbcType="VARCHAR" property="sortingTaskNo" />
+    <result column="sku_code" jdbcType="VARCHAR" property="skuCode" />
+    <result column="sku_name" jdbcType="VARCHAR" property="skuName" />
+    <result column="sku_unit" jdbcType="VARCHAR" property="skuUnit" />
+    <result column="sorting_qty" jdbcType="INTEGER" property="sortingQty" />
+    <result column="area_code" jdbcType="VARCHAR" property="areaCode" />
+    <result column="location_code" jdbcType="VARCHAR" property="locationCode" />
+    <result column="sorting_transaction_code" jdbcType="VARCHAR" property="sortingTransactionCode" />
+    <result column="sorting_location_id" jdbcType="INTEGER" property="sortingLocationId" />
+    <result column="picking_area_code" jdbcType="VARCHAR" property="pickingAreaCode" />
+    <result column="picking_location_code" jdbcType="VARCHAR" property="pickingLocationCode" />
+    <result column="picking_location_id" jdbcType="INTEGER" property="pickingLocationId" />
+    <result column="batch_no" jdbcType="VARCHAR" property="batchNo" />
+    <result column="big_warehouse_no" jdbcType="VARCHAR" property="bigWarehouseNo" />
+    <result column="shipper_code" jdbcType="VARCHAR" property="shipperCode" />
+    <result column="create_user_login_name" jdbcType="VARCHAR" property="createUserLoginName" />
+    <result column="update_user_login_name" jdbcType="VARCHAR" property="updateUserLoginName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, delivery_box_id, container_no, bussiness_type, sorting_task_id, sorting_task_no, 
+    sku_code, sku_name, sku_unit, sorting_qty, area_code, location_code, sorting_transaction_code, 
+    sorting_location_id, picking_area_code, picking_location_code, picking_location_id, 
+    batch_no, big_warehouse_no, shipper_code, create_user_login_name, update_user_login_name, 
+    create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wms_delivery_box_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from wms_delivery_box_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jiang.localspringbootdemo.entity.DeliveryBoxDetail">
+    insert into wms_delivery_box_detail (id, delivery_box_id, container_no, 
+      bussiness_type, sorting_task_id, sorting_task_no, 
+      sku_code, sku_name, sku_unit, 
+      sorting_qty, area_code, location_code, 
+      sorting_transaction_code, sorting_location_id, 
+      picking_area_code, picking_location_code, picking_location_id, 
+      batch_no, big_warehouse_no, shipper_code, 
+      create_user_login_name, update_user_login_name, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{deliveryBoxId,jdbcType=INTEGER}, #{containerNo,jdbcType=VARCHAR}, 
+      #{bussinessType,jdbcType=TINYINT}, #{sortingTaskId,jdbcType=INTEGER}, #{sortingTaskNo,jdbcType=VARCHAR}, 
+      #{skuCode,jdbcType=VARCHAR}, #{skuName,jdbcType=VARCHAR}, #{skuUnit,jdbcType=VARCHAR}, 
+      #{sortingQty,jdbcType=INTEGER}, #{areaCode,jdbcType=VARCHAR}, #{locationCode,jdbcType=VARCHAR}, 
+      #{sortingTransactionCode,jdbcType=VARCHAR}, #{sortingLocationId,jdbcType=INTEGER}, 
+      #{pickingAreaCode,jdbcType=VARCHAR}, #{pickingLocationCode,jdbcType=VARCHAR}, #{pickingLocationId,jdbcType=INTEGER}, 
+      #{batchNo,jdbcType=VARCHAR}, #{bigWarehouseNo,jdbcType=VARCHAR}, #{shipperCode,jdbcType=VARCHAR}, 
+      #{createUserLoginName,jdbcType=VARCHAR}, #{updateUserLoginName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jiang.localspringbootdemo.entity.DeliveryBoxDetail">
+    insert into wms_delivery_box_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="deliveryBoxId != null">
+        delivery_box_id,
+      </if>
+      <if test="containerNo != null">
+        container_no,
+      </if>
+      <if test="bussinessType != null">
+        bussiness_type,
+      </if>
+      <if test="sortingTaskId != null">
+        sorting_task_id,
+      </if>
+      <if test="sortingTaskNo != null">
+        sorting_task_no,
+      </if>
+      <if test="skuCode != null">
+        sku_code,
+      </if>
+      <if test="skuName != null">
+        sku_name,
+      </if>
+      <if test="skuUnit != null">
+        sku_unit,
+      </if>
+      <if test="sortingQty != null">
+        sorting_qty,
+      </if>
+      <if test="areaCode != null">
+        area_code,
+      </if>
+      <if test="locationCode != null">
+        location_code,
+      </if>
+      <if test="sortingTransactionCode != null">
+        sorting_transaction_code,
+      </if>
+      <if test="sortingLocationId != null">
+        sorting_location_id,
+      </if>
+      <if test="pickingAreaCode != null">
+        picking_area_code,
+      </if>
+      <if test="pickingLocationCode != null">
+        picking_location_code,
+      </if>
+      <if test="pickingLocationId != null">
+        picking_location_id,
+      </if>
+      <if test="batchNo != null">
+        batch_no,
+      </if>
+      <if test="bigWarehouseNo != null">
+        big_warehouse_no,
+      </if>
+      <if test="shipperCode != null">
+        shipper_code,
+      </if>
+      <if test="createUserLoginName != null">
+        create_user_login_name,
+      </if>
+      <if test="updateUserLoginName != null">
+        update_user_login_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryBoxId != null">
+        #{deliveryBoxId,jdbcType=INTEGER},
+      </if>
+      <if test="containerNo != null">
+        #{containerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bussinessType != null">
+        #{bussinessType,jdbcType=TINYINT},
+      </if>
+      <if test="sortingTaskId != null">
+        #{sortingTaskId,jdbcType=INTEGER},
+      </if>
+      <if test="sortingTaskNo != null">
+        #{sortingTaskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="skuCode != null">
+        #{skuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="skuName != null">
+        #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuUnit != null">
+        #{skuUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="sortingQty != null">
+        #{sortingQty,jdbcType=INTEGER},
+      </if>
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="locationCode != null">
+        #{locationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sortingTransactionCode != null">
+        #{sortingTransactionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sortingLocationId != null">
+        #{sortingLocationId,jdbcType=INTEGER},
+      </if>
+      <if test="pickingAreaCode != null">
+        #{pickingAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pickingLocationCode != null">
+        #{pickingLocationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pickingLocationId != null">
+        #{pickingLocationId,jdbcType=INTEGER},
+      </if>
+      <if test="batchNo != null">
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bigWarehouseNo != null">
+        #{bigWarehouseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCode != null">
+        #{shipperCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserLoginName != null">
+        #{createUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserLoginName != null">
+        #{updateUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jiang.localspringbootdemo.entity.DeliveryBoxDetail">
+    update wms_delivery_box_detail
+    <set>
+      <if test="deliveryBoxId != null">
+        delivery_box_id = #{deliveryBoxId,jdbcType=INTEGER},
+      </if>
+      <if test="containerNo != null">
+        container_no = #{containerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bussinessType != null">
+        bussiness_type = #{bussinessType,jdbcType=TINYINT},
+      </if>
+      <if test="sortingTaskId != null">
+        sorting_task_id = #{sortingTaskId,jdbcType=INTEGER},
+      </if>
+      <if test="sortingTaskNo != null">
+        sorting_task_no = #{sortingTaskNo,jdbcType=VARCHAR},
+      </if>
+      <if test="skuCode != null">
+        sku_code = #{skuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="skuName != null">
+        sku_name = #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuUnit != null">
+        sku_unit = #{skuUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="sortingQty != null">
+        sorting_qty = #{sortingQty,jdbcType=INTEGER},
+      </if>
+      <if test="areaCode != null">
+        area_code = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="locationCode != null">
+        location_code = #{locationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sortingTransactionCode != null">
+        sorting_transaction_code = #{sortingTransactionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sortingLocationId != null">
+        sorting_location_id = #{sortingLocationId,jdbcType=INTEGER},
+      </if>
+      <if test="pickingAreaCode != null">
+        picking_area_code = #{pickingAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pickingLocationCode != null">
+        picking_location_code = #{pickingLocationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pickingLocationId != null">
+        picking_location_id = #{pickingLocationId,jdbcType=INTEGER},
+      </if>
+      <if test="batchNo != null">
+        batch_no = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bigWarehouseNo != null">
+        big_warehouse_no = #{bigWarehouseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperCode != null">
+        shipper_code = #{shipperCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserLoginName != null">
+        create_user_login_name = #{createUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserLoginName != null">
+        update_user_login_name = #{updateUserLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jiang.localspringbootdemo.entity.DeliveryBoxDetail">
+    update wms_delivery_box_detail
+    set delivery_box_id = #{deliveryBoxId,jdbcType=INTEGER},
+      container_no = #{containerNo,jdbcType=VARCHAR},
+      bussiness_type = #{bussinessType,jdbcType=TINYINT},
+      sorting_task_id = #{sortingTaskId,jdbcType=INTEGER},
+      sorting_task_no = #{sortingTaskNo,jdbcType=VARCHAR},
+      sku_code = #{skuCode,jdbcType=VARCHAR},
+      sku_name = #{skuName,jdbcType=VARCHAR},
+      sku_unit = #{skuUnit,jdbcType=VARCHAR},
+      sorting_qty = #{sortingQty,jdbcType=INTEGER},
+      area_code = #{areaCode,jdbcType=VARCHAR},
+      location_code = #{locationCode,jdbcType=VARCHAR},
+      sorting_transaction_code = #{sortingTransactionCode,jdbcType=VARCHAR},
+      sorting_location_id = #{sortingLocationId,jdbcType=INTEGER},
+      picking_area_code = #{pickingAreaCode,jdbcType=VARCHAR},
+      picking_location_code = #{pickingLocationCode,jdbcType=VARCHAR},
+      picking_location_id = #{pickingLocationId,jdbcType=INTEGER},
+      batch_no = #{batchNo,jdbcType=VARCHAR},
+      big_warehouse_no = #{bigWarehouseNo,jdbcType=VARCHAR},
+      shipper_code = #{shipperCode,jdbcType=VARCHAR},
+      create_user_login_name = #{createUserLoginName,jdbcType=VARCHAR},
+      update_user_login_name = #{updateUserLoginName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

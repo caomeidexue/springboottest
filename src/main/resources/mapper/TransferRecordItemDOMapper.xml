@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiang.localspringbootdemo.mapper.TransferRecordItemDOMapper">
+  <resultMap id="BaseResultMap" type="com.jiang.localspringbootdemo.entity.TransferRecordItemDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="transfer_record_id" jdbcType="BIGINT" property="transferRecordId" />
+    <result column="material_id" jdbcType="BIGINT" property="materialId" />
+    <result column="material_num" jdbcType="INTEGER" property="materialNum" />
+    <result column="transfer_reason_type" jdbcType="TINYINT" property="transferReasonType" />
+    <result column="picture_url" jdbcType="VARCHAR" property="pictureUrl" />
+    <result column="handover_id" jdbcType="BIGINT" property="handoverId" />
+    <result column="handover_no" jdbcType="VARCHAR" property="handoverNo" />
+    <result column="sharding_id" jdbcType="BIGINT" property="shardingId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, transfer_record_id, material_id, material_num, transfer_reason_type, picture_url, 
+    handover_id, handover_no, sharding_id, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sms_transfer_record_item
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sms_transfer_record_item
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jiang.localspringbootdemo.entity.TransferRecordItemDO">
+    insert into sms_transfer_record_item (id, transfer_record_id, material_id, 
+      material_num, transfer_reason_type, picture_url, 
+      handover_id, handover_no, sharding_id, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{transferRecordId,jdbcType=BIGINT}, #{materialId,jdbcType=BIGINT}, 
+      #{materialNum,jdbcType=INTEGER}, #{transferReasonType,jdbcType=TINYINT}, #{pictureUrl,jdbcType=VARCHAR}, 
+      #{handoverId,jdbcType=BIGINT}, #{handoverNo,jdbcType=VARCHAR}, #{shardingId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jiang.localspringbootdemo.entity.TransferRecordItemDO">
+    insert into sms_transfer_record_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="transferRecordId != null">
+        transfer_record_id,
+      </if>
+      <if test="materialId != null">
+        material_id,
+      </if>
+      <if test="materialNum != null">
+        material_num,
+      </if>
+      <if test="transferReasonType != null">
+        transfer_reason_type,
+      </if>
+      <if test="pictureUrl != null">
+        picture_url,
+      </if>
+      <if test="handoverId != null">
+        handover_id,
+      </if>
+      <if test="handoverNo != null">
+        handover_no,
+      </if>
+      <if test="shardingId != null">
+        sharding_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="transferRecordId != null">
+        #{transferRecordId,jdbcType=BIGINT},
+      </if>
+      <if test="materialId != null">
+        #{materialId,jdbcType=BIGINT},
+      </if>
+      <if test="materialNum != null">
+        #{materialNum,jdbcType=INTEGER},
+      </if>
+      <if test="transferReasonType != null">
+        #{transferReasonType,jdbcType=TINYINT},
+      </if>
+      <if test="pictureUrl != null">
+        #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="handoverId != null">
+        #{handoverId,jdbcType=BIGINT},
+      </if>
+      <if test="handoverNo != null">
+        #{handoverNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shardingId != null">
+        #{shardingId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jiang.localspringbootdemo.entity.TransferRecordItemDO">
+    update sms_transfer_record_item
+    <set>
+      <if test="transferRecordId != null">
+        transfer_record_id = #{transferRecordId,jdbcType=BIGINT},
+      </if>
+      <if test="materialId != null">
+        material_id = #{materialId,jdbcType=BIGINT},
+      </if>
+      <if test="materialNum != null">
+        material_num = #{materialNum,jdbcType=INTEGER},
+      </if>
+      <if test="transferReasonType != null">
+        transfer_reason_type = #{transferReasonType,jdbcType=TINYINT},
+      </if>
+      <if test="pictureUrl != null">
+        picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="handoverId != null">
+        handover_id = #{handoverId,jdbcType=BIGINT},
+      </if>
+      <if test="handoverNo != null">
+        handover_no = #{handoverNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shardingId != null">
+        sharding_id = #{shardingId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jiang.localspringbootdemo.entity.TransferRecordItemDO">
+    update sms_transfer_record_item
+    set transfer_record_id = #{transferRecordId,jdbcType=BIGINT},
+      material_id = #{materialId,jdbcType=BIGINT},
+      material_num = #{materialNum,jdbcType=INTEGER},
+      transfer_reason_type = #{transferReasonType,jdbcType=TINYINT},
+      picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      handover_id = #{handoverId,jdbcType=BIGINT},
+      handover_no = #{handoverNo,jdbcType=VARCHAR},
+      sharding_id = #{shardingId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

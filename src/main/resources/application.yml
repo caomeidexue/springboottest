@@ -10,4 +10,11 @@ spring:
     name: localspringbootdemo
   profiles:
     active: test
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+mybatis:
+  config-location: classpath:/mybatis-config.xml
+  check-config-location: true
 
